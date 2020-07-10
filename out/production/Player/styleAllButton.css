@@ -1,0 +1,10 @@
+* {
+	-fx-background-size: 30px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: white;
+    -fx-effect: null;
+}
+
+*:hover {
+	-fx-background-color: yellow;
+}
