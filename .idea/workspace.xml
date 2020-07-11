@@ -10,9 +10,10 @@
   </component>
   <component name="ProjectId" id="1eVXDxIKP1n5CUwKNLQVuI8Ibfs" />
   <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="C:/javafx-sdk-11.0.2/lib" />
     <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -30,10 +31,23 @@
     <configuration name="Run" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="sample.Main" />
       <module name="Player" />
-      <option name="VM_PARAMETERS" value="--module-path C:\javafx-sdk-11.0.2\lib --add-modules javafx.controls,javafx.fxml" />
+      <option name="VM_PARAMETERS" value="--module-path C:\javafx-sdk-11.0.2\lib --add-modules=javafx.controls,javafx.fxml,javafx.media" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="99362026-c0fa-40fd-90a7-0ab2475f6c35" name="Default Changelist" comment="" />
+      <created>1594442792286</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1594442792286</updated>
+    </task>
+    <servers />
   </component>
 </project>
