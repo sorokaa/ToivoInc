@@ -1,34 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <VBox fx:id="drawer" layoutY="-142.0" maxHeight="174.0" maxWidth="600.0" prefHeight="174.0" prefWidth="600.0" style="-fx-background-color: yellow;" />
-      <Button fx:id="play" layoutX="256.0" layoutY="331.0" minWidth="41.0" mnemonicParsing="false" onAction="#playMusic" prefHeight="32.0" prefWidth="73.0">
+      <ListView fx:id="listOfMusic" focusTraversable="false" layoutX="10.0" layoutY="34.0" prefHeight="261.0" prefWidth="590.0" />
+      <AnchorPane layoutX="5.0" layoutY="295.0" prefHeight="106.0" prefWidth="600.0" style="-fx-background-color: #2c8f09;">
+         <children>
+            <Label fx:id="currentTrackLabel" alignment="CENTER" layoutX="2.0" layoutY="-1.0" prefHeight="32.0" prefWidth="379.0" text="Select fold with tracks" textAlignment="CENTER">
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="15.0" />
+               </font>
+            </Label>
+            <Slider fx:id="volumeSlider" layoutX="441.0" layoutY="58.0" onDragDetected="#changeVolume" prefHeight="24.0" prefWidth="113.0" visible="false" />
+            <Button layoutX="369.0" layoutY="54.0" mnemonicParsing="false" onAction="#openValueSlider" stylesheets="@../styleAllButton.css" text="▲" />
+         </children>
+      </AnchorPane>
+      <VBox fx:id="drawer" layoutY="-140.0" maxHeight="174.0" maxWidth="600.0" prefHeight="174.0" prefWidth="600.0" style="-fx-background-color: #2c8f09;" />
+      <Button fx:id="play" layoutX="61.0" layoutY="348.0" minWidth="41.0" mnemonicParsing="false" onAction="#playMusic" prefHeight="32.0" prefWidth="73.0">
          <stylesheets>
             <URL value="@../stylePlayBtn.css" />
             <URL value="@../styleAllButton.css" />
-         </stylesheets></Button>
-      <Button fx:id="menuBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="-1.0" minWidth="30.0" mnemonicParsing="false" onAction="#chooseDir" prefHeight="32.0" prefWidth="63.0" style="-fx-background-color: yellow;">
+         </stylesheets>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="menuBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="-1.0" minWidth="30.0" mnemonicParsing="false" onAction="#menuOpen" prefHeight="32.0" prefWidth="63.0">
          <stylesheets>
             <URL value="@../styleMenu.css" />
             <URL value="@../styleAllButton.css" />
-         </stylesheets></Button>
-      <Button fx:id="btnPrev" layoutX="215.0" layoutY="331.0" minWidth="35.0" mnemonicParsing="false" onAction="#prevTrack" prefHeight="32.0" prefWidth="35.0">
+         </stylesheets>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="btnPrev" layoutX="20.0" layoutY="348.0" minWidth="35.0" mnemonicParsing="false" onAction="#prevTrack" prefHeight="32.0" prefWidth="35.0">
          <stylesheets>
             <URL value="@../stylePrevButton.css" />
             <URL value="@../styleAllButton.css" />
          </stylesheets>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
-      <Button fx:id="btnNext" layoutX="337.0" layoutY="331.0" minWidth="35.0" mnemonicParsing="false" onAction="#nextTrack" prefHeight="32.0" prefWidth="35.0">
+      <Button fx:id="btnNext" layoutX="142.0" layoutY="348.0" minWidth="35.0" mnemonicParsing="false" onAction="#nextTrack" prefHeight="32.0" prefWidth="35.0">
          <stylesheets>
             <URL value="@../styleNextButton.css" />
             <URL value="@../styleAllButton.css" />
          </stylesheets>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
+      <Slider layoutX="13.0" layoutY="320.0" prefHeight="25.0" prefWidth="579.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Slider>
+      <Button fx:id="chooseDirBtn" layoutX="514.0" layoutY="118.0" mnemonicParsing="false" onAction="#chooseDir" stylesheets="@../styleAllButton.css" text="Choose" visible="false" />
    </children>
 </AnchorPane>
