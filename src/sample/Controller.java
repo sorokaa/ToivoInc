@@ -4,14 +4,15 @@ import MusicList.ListOfMusic;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.File;
@@ -51,6 +52,7 @@ public class Controller {
     }
 
     private void setTrack() {
+        path = l.getNextTrack();
         Media media = new Media(new File(path).toURI().toString());
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setAutoPlay(false);
@@ -88,13 +90,9 @@ public class Controller {
             closeNav.play();
         }
 
-        /*if(l == null) {
+        if(l == null) {
             DirectoryChooser directoryChooser = new DirectoryChooser();
-            try {
-                path = directoryChooser.showDialog(new Stage()).getAbsolutePath();
-            } catch (NullPointerException e) {
-                return;
-            }
+            path = directoryChooser.showDialog(new Stage()).getAbsolutePath();
             addTracksFromPath();
             if(l.getSize() == 0) {
                 Alert a = new Alert(Alert.AlertType.INFORMATION);
@@ -103,7 +101,7 @@ public class Controller {
                 a.show();
             }
         }
-        setTrack();*/
+        setTrack();
     }
 
     public void prevTrack(ActionEvent actionEvent) {
