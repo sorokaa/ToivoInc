@@ -5,7 +5,7 @@ public class Node {
     private Node prev;
     private Node next;
 
-    public Node(Node prev, Node next, String currentTrack) {
+    Node(Node prev, Node next, String currentTrack) {
         this.prev = prev;
         this.next = next;
         this.currentTrack = currentTrack;
@@ -15,11 +15,11 @@ public class Node {
         this.prev = prev;
     }
 
-    public void setNext(Node next) {
+    void setNext(Node next) {
         this.next = next;
     }
 
-    public String getCurrentTrack() {
+    String getCurrentTrack() {
         return currentTrack;
     }
 

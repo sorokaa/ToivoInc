@@ -1,0 +1,4 @@
+#menuBtn {
+	-fx-background-image:url('../images/menu.png');
+	-fx-background-position: center;
+}

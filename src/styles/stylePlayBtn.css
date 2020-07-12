@@ -1,0 +1,8 @@
+#play {
+	-fx-background-image:url('../images/playImg.png');
+	-fx-background-position: center;
+}
+
+#play:selected {
+	-fx-background-size: 5px;
+}

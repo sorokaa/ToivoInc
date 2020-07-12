@@ -1,0 +1,4 @@
+#btnPrev {
+    -fx-background-image:url('../images/imgPrev.png');
+	-fx-background-position: right;
+}

@@ -1,0 +1,4 @@
+#btnNext {
+	-fx-background-image:url('../images/imgNext.png');
+	-fx-background-position: left;
+}
