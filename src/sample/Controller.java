@@ -22,6 +22,9 @@ public class Controller {
     public AnchorPane mainPane;
     public Button darkModeBtn;
     public Label pathToRemember;
+    public Button minimazeBtn;
+    public AnchorPane controlPane;
+    public Button maximazeButton;
     private String path;
     private boolean played = false;
     private ListOfMusic l;
@@ -139,7 +142,7 @@ public class Controller {
             setTrack();
         }
     }
-    //TODO
+
     public void prevTrack() {
         String path;
         try {
@@ -175,8 +178,6 @@ public class Controller {
     }
 
     public void menuOpen() {
-        Main.stage.setWidth(600);
-        Main.stage.setHeight(136);
         TranslateTransition openNav = new TranslateTransition(new Duration(350), drawer);
         TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
 
@@ -188,11 +189,14 @@ public class Controller {
                 chooseDirBtn.setVisible(true);
                 darkModeBtn.setVisible(true);
                 pathToRemember.setVisible(true);
+                minimazeBtn.setVisible(true);
+
             });
         } else {
             chooseDirBtn.setVisible(false);
             darkModeBtn.setVisible(false);
             pathToRemember.setVisible(false);
+            minimazeBtn.setVisible(false);
             closeNav.setToY(0);
             closeNav.play();
         }
@@ -232,6 +236,26 @@ public class Controller {
             darkModeBtn.setText("Dark mode: On");
         } else {
             darkModeBtn.setText("Dark mode: Off");
+        }
+    }
+
+    private boolean isMinimazed = false;
+    public void minimazeWindow() {
+        menuOpen();
+        if(isMinimazed) {
+            Main.stage.setHeight(437.6000061035156);
+            maximazeButton.setVisible(false);
+            controlPane.relocate(0, 295);
+            this.drawer.setVisible(true);
+            menuBtn.setVisible(true);
+            isMinimazed = false;
+        } else {
+            Main.stage.setHeight(controlPane.getHeight() + 25);
+            controlPane.relocate(0,0);
+            this.drawer.setVisible(false);
+            menuBtn.setVisible(false);
+            maximazeButton.setVisible(true);
+            isMinimazed = true;
         }
     }
 }
