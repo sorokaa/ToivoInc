@@ -86,7 +86,7 @@ public class Controller {
 
     private void setTrack() {
 
-        path = l.getNextTrack();
+        path = l.getCurrentTrack();
         Media media = new Media(new File(path).toURI().toString());
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setAutoPlay(false);
@@ -121,7 +121,6 @@ public class Controller {
                     pathToRemember.setText(path);
                     FileWriter fw = new FileWriter(new File("pathToFolder.txt"));
                     PrintWriter pw = new PrintWriter(fw);
-                    System.out.println(path);
                     pw.print(path);
                     pw.close();
                 }
@@ -152,10 +151,10 @@ public class Controller {
             System.out.println("Error");
             return;
         }
-        System.out.println(path);
         mediaPlayer.stop();
         played = false;
         setTrack();
+        playMusic();
     }
 
     public void nextTrack() {
@@ -223,9 +222,7 @@ public class Controller {
         }
 
         String[] settings = f.changeMode(isEmptyList);
-        for (String s : settings) {
-            System.out.println(s);
-        }
+
         mainPane.setStyle(settings[0]);
         listOfMusic.setStyle(settings[1]);
 
