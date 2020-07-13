@@ -2,7 +2,6 @@ package MusicList;
 
 public class ListOfMusic {
 
-    private String currentTrack;
     private Node first;
     private Node last;
     private Node n;
@@ -36,4 +35,21 @@ public class ListOfMusic {
         n = n.getNext();
         return path;
     }
+
+    public String getPrevTrack() {
+        String path = "";
+        if (n != null && n.hasPrev()) {
+            path = n.getCurrentTrack();
+            n = n.getPrev();
+        }
+        return path;
+    }
+
+    public String getCurrentTrack() {
+        if(n == null) {
+            return first.getCurrentTrack();
+        }
+        return n.getCurrentTrack();
+    }
+
 }
