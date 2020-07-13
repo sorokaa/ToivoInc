@@ -25,6 +25,7 @@ public class Controller {
     public Button minimazeBtn;
     public AnchorPane controlPane;
     public Button maximazeButton;
+    public Button volumeBtn;
     private String path;
     private boolean played = false;
     private ListOfMusic l;
@@ -251,6 +252,13 @@ public class Controller {
             isMinimazed = false;
         } else {
             Main.stage.setHeight(controlPane.getHeight() + 25);
+            Main.stage.setWidth(450);
+
+            controlPane.setMaxWidth(450);
+            trackDurationSlider.setMaxWidth(400);
+            volumeBtn.setTranslateX(-150);
+            volumeSlider.setTranslateX(-150);
+
             controlPane.relocate(0,0);
             this.drawer.setVisible(false);
             menuBtn.setVisible(false);

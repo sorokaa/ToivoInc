@@ -20,11 +20,15 @@
                   <Font name="Franklin Gothic Heavy" size="15.0" />
                </font>
             </Label>
-            <Slider fx:id="volumeSlider" layoutX="416.0" layoutY="61.0" onDragDetected="#changeVolume" prefHeight="24.0" prefWidth="113.0" visible="false" />
-            <Button layoutX="534.0" layoutY="54.0" mnemonicParsing="false" onAction="#openValueSlider" stylesheets="@../styles/styleAllButton.css" text="▲">
+            <Slider fx:id="volumeSlider" layoutX="408.0" layoutY="50.0" onDragDetected="#changeVolume" prefHeight="24.0" prefWidth="113.0" visible="false" />
+            <Button fx:id="volumeBtn" layoutX="522.0" layoutY="47.0" mnemonicParsing="false" onAction="#openValueSlider" prefHeight="34.0" prefWidth="35.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
-               </cursor></Button>
+               </cursor>
+               <stylesheets>
+                  <URL value="@../styles/styleAllButton.css" />
+                  <URL value="@../styles/styleVolumeButton.css" />
+               </stylesheets></Button>
             <Button fx:id="play" layoutX="41.0" layoutY="48.0" minWidth="41.0" mnemonicParsing="false" onAction="#playMusic" prefHeight="32.0" prefWidth="46.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
