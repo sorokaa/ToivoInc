@@ -90,6 +90,11 @@ public class Controller {
 
     private void setTrack() {
 
+        if(l == null) {
+            System.out.println("Error");
+            return;
+        }
+
         path = l.getCurrentTrack();
         Media media = new Media(new File(path).toURI().toString());
         mediaPlayer = new MediaPlayer(media);
@@ -101,6 +106,7 @@ public class Controller {
     }
 
     private void addTracksFromPath() {
+
         File repos = new File(path);
         File[] files = repos.listFiles();
         if(files == null) {
@@ -112,6 +118,12 @@ public class Controller {
                 l.add(f.getAbsolutePath());
                 listOfMusic.getItems().add(makeTextForLabel(f.getAbsolutePath()));
             }
+        }
+        if(l.getSize() == 0) {
+            Alert a = new Alert(Alert.AlertType.INFORMATION);
+            a.setTitle("INFORMATION");
+            a.setContentText("Not contains mp3 files. Try another folder");
+            a.show();
         }
     }
 
@@ -132,13 +144,6 @@ public class Controller {
                 return;
             }
             addTracksFromPath();
-            if(l.getSize() == 0) {
-                Alert a = new Alert(Alert.AlertType.INFORMATION);
-                a.setTitle("INFORMATION");
-                a.setContentText("Not contains mp3 files. Try another folder");
-                a.show();
-                return;
-            }
             menuOpen();
             setTrack();
         }
@@ -244,16 +249,19 @@ public class Controller {
     public void minimazeWindow() {
         menuOpen();
         if(isMinimazed) {
-            Main.stage.setHeight(437.6000061035156);
+            Main.setOldSizeOfStage();
             maximazeButton.setVisible(false);
             controlPane.relocate(0, 295);
+            controlPane.setMaxWidth(600);
             this.drawer.setVisible(true);
             menuBtn.setVisible(true);
+            trackDurationSlider.setMaxWidth(579);
+            volumeBtn.setTranslateX(0);
+            volumeSlider.setTranslateX(0);
             isMinimazed = false;
-        } else {
-            Main.stage.setHeight(controlPane.getHeight() + 25);
-            Main.stage.setWidth(450);
 
+        } else {
+            Main.setNewSizeOfStage(450, controlPane.getHeight()+25);
             controlPane.setMaxWidth(450);
             trackDurationSlider.setMaxWidth(400);
             volumeBtn.setTranslateX(-150);
@@ -265,5 +273,7 @@ public class Controller {
             maximazeButton.setVisible(true);
             isMinimazed = true;
         }
+        Main.setOnTop();
+
     }
 }
