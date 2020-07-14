@@ -64,7 +64,7 @@
             <Button fx:id="maximazeButton" alignment="CENTER" layoutX="139.0" layoutY="51.0" mnemonicParsing="false" onAction="#minimazeWindow" prefHeight="24.0" prefWidth="46.0" style="-fx-background-color: black;" stylesheets="@../styles/styleAllButton.css" text="Max" visible="false" />
          </children>
       </AnchorPane>
-      <VBox fx:id="drawer" layoutY="-141.0" maxHeight="174.0" maxWidth="600.0" prefHeight="174.0" prefWidth="600.0" style="-fx-background-color: #2c8f09;" />
+      <VBox fx:id="drawer" layoutY="-141.0" maxHeight="174.0" maxWidth="600.0" prefHeight="174.0" prefWidth="600.0" style="-fx-background-color: #333;" />
       <Button fx:id="menuBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="-1.0" minWidth="30.0" mnemonicParsing="false" onAction="#menuOpen" prefHeight="34.0" prefWidth="63.0">
          <cursor>
             <Cursor fx:constant="HAND" />
