@@ -266,7 +266,7 @@ public class Controller {
             trackDurationSlider.setMaxWidth(400);
             volumeBtn.setTranslateX(-150);
             volumeSlider.setTranslateX(-150);
-
+            //надо закрыть меню после увеличения окна
             controlPane.relocate(0,0);
             this.drawer.setVisible(false);
             menuBtn.setVisible(false);
