@@ -73,10 +73,10 @@ public class Controller {
         }
         currentTrackLabel.setText(makeTextForLabel(path));
         if (!played) {
-            play.setStyle("-fx-background-image:url('images/pause.png');");
+            play.setStyle("-fx-background-image:url('images/light-mode/pause.png');");
             mediaPlayer.play();
         } else {
-            play.setStyle("-fx-background-image:url('images/playImg.png');");
+            play.setStyle("-fx-background-image:url('images/light-mode/playImg.png');");
             mediaPlayer.pause();
         }
         played = !played;
@@ -249,15 +249,21 @@ public class Controller {
     public void minimazeWindow() {
         menuOpen();
         if(isMinimazed) {
+            //Remember old size of stage and set this size
+            //where stage is maximazed
             Main.setOldSizeOfStage();
+
             maximazeButton.setVisible(false);
             controlPane.relocate(0, 295);
             controlPane.setMaxWidth(600);
-            this.drawer.setVisible(true);
+
+            drawer.setVisible(true);
             menuBtn.setVisible(true);
             trackDurationSlider.setMaxWidth(579);
+
             volumeBtn.setTranslateX(0);
             volumeSlider.setTranslateX(0);
+
             isMinimazed = false;
 
         } else {
@@ -266,9 +272,8 @@ public class Controller {
             trackDurationSlider.setMaxWidth(400);
             volumeBtn.setTranslateX(-150);
             volumeSlider.setTranslateX(-150);
-            //надо закрыть меню после увеличения окна
             controlPane.relocate(0,0);
-            this.drawer.setVisible(false);
+            drawer.setVisible(false);
             menuBtn.setVisible(false);
             maximazeButton.setVisible(true);
             isMinimazed = true;

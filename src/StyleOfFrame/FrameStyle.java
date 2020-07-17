@@ -13,9 +13,9 @@ public class FrameStyle {
         String[] settings = new String[2];
 
         if(currentStatus.contains("Off")) {
-            settings[0] = "-fx-background-color: #333;";
+            settings[0] = "-fx-background-color: black;";
             if (isBlankList) {
-                settings[1] = "-fx-background-color: #333; -fx-control-inner-background: #333";
+                settings[1] = "-fx-background-color: black; -fx-control-inner-background: black";
             } else {
                 settings[1] = "-fx-background-color: #FFF7EB; -fx-control-inner-background: #333";
             }
