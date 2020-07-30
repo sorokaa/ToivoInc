@@ -10,6 +10,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -30,14 +32,16 @@ public class Controller {
     private boolean played = false;
     private ListOfMusic l;
     private boolean isDark = false;
+    private boolean isMinimazed = false;
 
     public Button menuBtn;
     public Button chooseDirBtn;
-    public Label currentTrackLabel;
+    private Label currentTrackLabel;
     public ListView<String> listOfMusic;
     public Slider volumeSlider;
     public Slider trackDurationSlider;
     private MediaPlayer mediaPlayer;
+
     @FXML private Button play;
     @FXML private VBox drawer;
 
@@ -68,18 +72,29 @@ public class Controller {
     }
 
     public void playMusic() {
+
+        //Check correct path to fold with music
         if(path == null || path.equals("")) {
             return;
         }
+        currentTrackLabel = new Label();
         currentTrackLabel.setText(makeTextForLabel(path));
+
+        //Button style
+        String styleOfButton = "-fx-background-image:url('images/light-mode/";
         if (!played) {
-            play.setStyle("-fx-background-image:url('images/light-mode/pause.png');");
+            styleOfButton += "pause.png');";
+            play.setStyle(styleOfButton);
             mediaPlayer.play();
         } else {
-            play.setStyle("-fx-background-image:url('images/light-mode/playImg.png');");
+            styleOfButton += "playImg.png');";
+            play.setStyle(styleOfButton);
             mediaPlayer.pause();
         }
+
         played = !played;
+
+        //Move music slider and set next track when it end (ingleesh)
         mediaPlayer.currentTimeProperty().addListener((observableValue, duration, t1) -> {
             if(trackDurationSlider.getValue() >= trackDurationSlider.getMax()) {
                 nextTrack();
@@ -239,13 +254,16 @@ public class Controller {
         isDark = !isDark;
 
         if(isDark) {
-            darkModeBtn.setText("Dark mode: On");
+            Text on = new Text("On");
+            on.setFill(Color.GREEN);
+            darkModeBtn.setText(on.getText());
         } else {
-            darkModeBtn.setText("Dark mode: Off");
+            Text off = new Text("Off");
+            off.setFill(Color.RED);
+            darkModeBtn.setText(off.getText());
         }
     }
 
-    private boolean isMinimazed = false;
     public void minimazeWindow() {
         menuOpen();
         if(isMinimazed) {
