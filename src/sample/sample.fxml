@@ -56,15 +56,15 @@
                </cursor>
             </Slider>
             <Button fx:id="maximazeButton" alignment="CENTER" layoutX="139.0" layoutY="51.0" mnemonicParsing="false" onAction="#minimazeWindow" prefHeight="24.0" prefWidth="46.0" style="-fx-background-color: black;" stylesheets="@../styles/styleAllButton.css" text="Max" visible="false" />
-            <Label fx:id="currentTrackLabel1" alignment="CENTER" layoutX="24.0" layoutY="4.0" prefHeight="32.0" prefWidth="565.0" style="-fx-text-fill: yellow;" text="Select fold with tracks" textAlignment="CENTER">
+            <Label fx:id="currentTrackLabel" alignment="CENTER" layoutX="24.0" layoutY="4.0" prefHeight="32.0" prefWidth="565.0" style="-fx-text-fill: yellow;" text="Select fold with tracks" textAlignment="CENTER">
                <font>
                   <Font name="Franklin Gothic Heavy" size="15.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <ListView fx:id="listOfMusic" focusTraversable="false" layoutX="10.0" layoutY="48.0" prefHeight="248.0" prefWidth="590.0" />
-      <VBox fx:id="drawer" layoutY="-141.0" maxHeight="174.0" maxWidth="600.0" prefHeight="174.0" prefWidth="600.0" style="-fx-background-color: #333;" />
+      <ListView fx:id="listOfMusic" focusTraversable="false" layoutX="1.0" layoutY="34.0" prefHeight="262.0" prefWidth="600.0" />
+      <VBox fx:id="drawer" layoutX="1.0" layoutY="-141.0" maxHeight="174.0" maxWidth="600.0" prefHeight="174.0" prefWidth="600.0" style="-fx-background-color: #333;" />
       <Button fx:id="menuBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="-1.0" minWidth="30.0" mnemonicParsing="false" onAction="#menuOpen" prefHeight="34.0" prefWidth="63.0" style="-fx-background-color: #333;">
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -73,13 +73,31 @@
             <URL value="@../styles/styleAllButton.css" />
             <URL value="@../styles/styleMenu.css" />
          </stylesheets></Button>
-      <Button fx:id="chooseDirBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="463.0" layoutY="111.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onAction="#chooseDir" prefHeight="32.0" prefWidth="129.0" style="-fx-background-color: black;" stylesheets="@../styles/styleAllButton.css" text="Choose" visible="false" />
-      <Button fx:id="darkModeBtn" alignment="CENTER" layoutX="21.0" layoutY="108.0" mnemonicParsing="false" onAction="#darkModeEnable" prefHeight="32.0" prefWidth="129.0" style="-fx-background-color: black;" stylesheets="@../styles/styleAllButton.css" text="Dark mode: Off" visible="false" />
+      <Button fx:id="chooseDirBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="463.0" layoutY="111.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onAction="#chooseDir" prefHeight="32.0" prefWidth="129.0" style="-fx-background-color: #333; -fx-text-fill: yellow;" stylesheets="@../styles/styleAllButton.css" text="Choose" visible="false">
+         <font>
+            <Font name="Franklin Gothic Heavy" size="15.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="darkModeBtn" alignment="CENTER" layoutX="21.0" layoutY="108.0" mnemonicParsing="false" onAction="#darkModeEnable" prefHeight="32.0" prefWidth="129.0" style="-fx-background-color: #333; -fx-text-fill: yellow;" stylesheets="@../styles/styleAllButton.css" text="Dark mode: Off" visible="false">
+         <font>
+            <Font name="Franklin Gothic Heavy" size="15.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
       <Label fx:id="pathToRemember" layoutX="371.0" layoutY="111.0" prefHeight="34.0" prefWidth="84.0" text="Empty" visible="false">
          <font>
             <Font name="Franklin Gothic Heavy" size="14.0" />
          </font>
       </Label>
-      <Button fx:id="minimazeBtn" alignment="CENTER" layoutX="154.0" layoutY="108.0" mnemonicParsing="false" onAction="#minimazeWindow" prefHeight="32.0" prefWidth="130.0" style="-fx-background-color: black;" stylesheets="@../styles/styleAllButton.css" text="Minimaze window" visible="false" />
+      <Button fx:id="minimazeBtn" alignment="CENTER" layoutX="154.0" layoutY="108.0" mnemonicParsing="false" onAction="#minimazeWindow" prefHeight="32.0" prefWidth="130.0" style="-fx-background-color: #333; -fx-text-fill: yellow;" stylesheets="@../styles/styleAllButton.css" text="Minimaze window" visible="false">
+         <font>
+            <Font name="Franklin Gothic Heavy" size="15.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
    </children>
 </AnchorPane>
