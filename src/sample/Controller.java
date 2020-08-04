@@ -19,6 +19,7 @@ import javafx.util.Duration;
 import java.io.*;
 import java.util.Scanner;
 
+
 public class Controller {
 
     public AnchorPane mainPane;
@@ -28,7 +29,7 @@ public class Controller {
     public AnchorPane controlPane;
     public Button maximazeButton;
     public Button volumeBtn;
-    private String path;
+    private String pathToTrack;
     private boolean played = false;
     private ListOfMusic l;
     private boolean isDark = false;
@@ -36,31 +37,43 @@ public class Controller {
 
     public Button menuBtn;
     public Button chooseDirBtn;
-    private Label currentTrackLabel;
     public ListView<String> listOfMusic;
     public Slider volumeSlider;
     public Slider trackDurationSlider;
     private MediaPlayer mediaPlayer;
+    @FXML
+    private Label currentTrackLabel;
 
     @FXML private Button play;
     @FXML private VBox drawer;
 
     @FXML void initialize() throws FileNotFoundException {
-        if(pathToRemember.getText().contains("Empty")) {
-            File myObj = new File("pathToFolder.txt");
-            Scanner myReader = new Scanner(myObj);
-            while (myReader.hasNextLine()) {
-                path = myReader.nextLine();
-            }
-            pathToRemember.setText(path);
-            addTracksFromPath();
-            setTrack();
 
+        //Open earlier opened folder
+        if(pathToRemember.getText().contains("Empty")) {
+
+            File fileWithMusic = new File("pathToFolder.txt");
+            Scanner myReader = new Scanner(fileWithMusic);
+            while (myReader.hasNextLine()) {
+                pathToTrack = myReader.nextLine();
+            }
+            pathToRemember.setText(pathToTrack);
+            addTracksFromPath();
+
+            if(l.getSize() == 0) {
+                Alert a = new Alert(Alert.AlertType.INFORMATION);
+                a.setTitle("INFORMATION");
+                a.setContentText("Not contains mp3 files. Try another folder");
+                a.show();
+                return;
+            }
+            setTrack();
         } else {
-            path = pathToRemember.getText();
+            pathToTrack = pathToRemember.getText();
             addTracksFromPath();
             setTrack();
         }
+        mediaPlayer.setVolume(60.0);
         volumeSlider.setValue(60.0);
     }
 
@@ -74,27 +87,29 @@ public class Controller {
     public void playMusic() {
 
         //Check correct path to fold with music
-        if(path == null || path.equals("")) {
+        if(pathToTrack == null || pathToTrack.equals("")) {
             return;
         }
-        currentTrackLabel = new Label();
-        currentTrackLabel.setText(makeTextForLabel(path));
+        currentTrackLabel.setText(makeTextForLabel(pathToTrack));
 
         //Button style
         String styleOfButton = "-fx-background-image:url('images/light-mode/";
         if (!played) {
             styleOfButton += "pause.png');";
-            play.setStyle(styleOfButton);
             mediaPlayer.play();
         } else {
             styleOfButton += "playImg.png');";
-            play.setStyle(styleOfButton);
             mediaPlayer.pause();
         }
 
+        play.setStyle(styleOfButton);
+
         played = !played;
 
-        //Move music slider and set next track when it end (ingleesh)
+        moveMusicSlider();
+    }
+
+    private void moveMusicSlider() {
         mediaPlayer.currentTimeProperty().addListener((observableValue, duration, t1) -> {
             if(trackDurationSlider.getValue() >= trackDurationSlider.getMax()) {
                 nextTrack();
@@ -110,11 +125,16 @@ public class Controller {
             return;
         }
 
-        path = l.getCurrentTrack();
-        Media media = new Media(new File(path).toURI().toString());
+        pathToTrack = l.getCurrentTrack();
+
+        Media media = new Media(new File(pathToTrack).toURI().toString());
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setAutoPlay(false);
+
         trackDurationSlider.setMin(0);
+
+
+
         mediaPlayer.setOnReady(() ->
                 trackDurationSlider.setMax(media.getDuration().toSeconds()-1));
 
@@ -122,7 +142,7 @@ public class Controller {
 
     private void addTracksFromPath() {
 
-        File repos = new File(path);
+        File repos = new File(pathToTrack);
         File[] files = repos.listFiles();
         if(files == null) {
             return;
@@ -134,34 +154,27 @@ public class Controller {
                 listOfMusic.getItems().add(makeTextForLabel(f.getAbsolutePath()));
             }
         }
-        if(l.getSize() == 0) {
-            Alert a = new Alert(Alert.AlertType.INFORMATION);
-            a.setTitle("INFORMATION");
-            a.setContentText("Not contains mp3 files. Try another folder");
-            a.show();
-        }
     }
 
     public void chooseDir() {
-        if(l == null) {
-            DirectoryChooser directoryChooser = new DirectoryChooser();
-            directoryChooser.setInitialDirectory(new File("D:\\"));
-            try {
-                path = directoryChooser.showDialog(new Stage()).getAbsolutePath();
-                if(!pathToRemember.getText().contains(path)) {
-                    pathToRemember.setText(path);
-                    FileWriter fw = new FileWriter(new File("pathToFolder.txt"));
-                    PrintWriter pw = new PrintWriter(fw);
-                    pw.print(path);
-                    pw.close();
-                }
-            } catch (NullPointerException | IOException e) {
-                return;
+
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setInitialDirectory(new File("D:\\"));
+        try {
+            pathToTrack = directoryChooser.showDialog(new Stage()).getAbsolutePath();
+            if (!pathToRemember.getText().contains(pathToTrack)) {
+                pathToRemember.setText(pathToTrack);
+                FileWriter fw = new FileWriter(new File("pathToFolder.txt"));
+                PrintWriter pw = new PrintWriter(fw);
+                pw.print(pathToTrack);
+                pw.close();
             }
-            addTracksFromPath();
-            menuOpen();
-            setTrack();
+        } catch (NullPointerException | IOException e) {
+            return;
         }
+        addTracksFromPath();
+        menuOpen();
+        setTrack();
     }
 
     public void prevTrack() {
@@ -238,6 +251,7 @@ public class Controller {
     }
 
     public void darkModeEnable(ActionEvent actionEvent) {
+
         String text = ((Button)actionEvent.getSource()).getText();
         FrameStyle f = new FrameStyle(text);
 
@@ -254,11 +268,11 @@ public class Controller {
         isDark = !isDark;
 
         if(isDark) {
-            Text on = new Text("On");
+            Text on = new Text("Dark mode: On");
             on.setFill(Color.GREEN);
             darkModeBtn.setText(on.getText());
         } else {
-            Text off = new Text("Off");
+            Text off = new Text("Dark mode: Off");
             off.setFill(Color.RED);
             darkModeBtn.setText(off.getText());
         }
@@ -288,6 +302,7 @@ public class Controller {
             Main.setNewSizeOfStage(450, controlPane.getHeight()+25);
             controlPane.setMaxWidth(450);
             trackDurationSlider.setMaxWidth(400);
+            listOfMusic.setVisible(false);
             volumeBtn.setTranslateX(-150);
             volumeSlider.setTranslateX(-150);
             controlPane.relocate(0,0);

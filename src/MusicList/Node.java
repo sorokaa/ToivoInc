@@ -2,6 +2,8 @@ package MusicList;
 
 public class Node {
     private String currentTrack;
+    private String artist;
+    private String name;
     private Node prev;
     private Node next;
 

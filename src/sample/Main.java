@@ -45,7 +45,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         stage = primaryStage;
         primaryStage.setTitle("ToivoInc");
-        Image im = new Image("images/logo/logo.png");
+        Image im = new Image("images/logo/logo.jpg");
         primaryStage.getIcons().setAll(im);
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
